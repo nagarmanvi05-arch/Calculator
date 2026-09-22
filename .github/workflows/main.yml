@@ -1,0 +1,45 @@
+.
+├── gradle/
+│   └── libs.versions.toml             # Modern Version Catalog (Compose, Room, DataStore)
+├── gradle.properties                  # AndroidX & Kotlin compiler flags
+├── build.gradle.kts                   # Root project Gradle configuration
+├── settings.gradle.kts                # Project name ("ProCalc") and dependency repositories
+├── metadata.json                      # AI Studio platform sync definition
+└── app/
+    ├── build.gradle.kts               # Android Application plugin, API 36, AAB/APK configurations
+    ├── proguard-rules.pro             # Optimized R8 ProGuard rules
+    └── src/
+        ├── main/
+        │   ├── AndroidManifest.xml    # Minimalist manifest with VIBRATE permission only
+        │   ├── res/
+        │   │   ├── drawable/          # Adaptive icon foregrounds & vector backgrounds
+        │   │   ├── mipmap-anydpi-v26/ # Adaptive launcher icons
+        │   │   └── values/
+        │   │       ├── colors.xml
+        │   │       └── strings.xml    # "ProCalc" app name and screen labels
+        │   └── java/
+        │       ├── com/example/
+        │       │   ├── MainActivity.kt                  # Edge-to-edge Compose root
+        │       │   ├── ui/theme/                        # M3 Theme, Typography & Dark/Light colors
+        │       │   └── calculator/
+        │       │       ├── engine/
+        │       │       │   └── CalculatorEngine.kt      # Safe recursive-descent math parser
+        │       │       ├── data/
+        │       │       │   ├── HistoryItem.kt           # Room SQLite Entity
+        │       │       │   ├── HistoryDao.kt            # Coroutine Flow DAO
+        │       │       │   ├── AppDatabase.kt           # Room Database definition
+        │       │       │   ├── HistoryRepository.kt     # Data repository layer
+        │       │       │   └── SettingsRepository.kt    # AndroidX DataStore for user preferences
+        │       │       └── ui/
+        │       │           ├── CalculatorViewModel.kt   # MVVM state container
+        │       │           ├── navigation/ProCalcApp.kt # Navigation Compose tab router
+        │       │           ├── components/              # Tactile spring buttons & responsive displays
+        │       │           └── screens/
+        │       │               ├── StandardCalculatorScreen.kt
+        │       │               ├── ScientificCalculatorScreen.kt
+        │       │               ├── HistoryScreen.kt
+        │       │               ├── SettingsScreen.kt
+        │       │               ├── AboutScreen.kt
+        │       │               └── PrivacyPolicyScreen.kt
+        └── test/
+            └── java/com/example/CalculatorEngineTest.kt # Deterministic unit tests
